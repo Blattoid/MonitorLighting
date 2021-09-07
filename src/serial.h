@@ -1,11 +1,13 @@
 #ifndef SERIAL_H
 #define SERIAL_H
 
+#include <QStringList>
 
-class serial
+class Serial
 {
-public:
-	serial();
+	public:
+		Serial();
+		QStringList FindAllSerialPorts();
 };
 
 #endif // SERIAL_H
