@@ -18,12 +18,10 @@ QStringList Serial::FindAllSerialPorts() {
 		strcpy(path, entry.path().c_str());
 		strcat(path, "/device");
 
-		// Does it exist?
-		if (lstat(path, &info) < 0){
-			qDebug() << "fucky wucky uwu";
-			continue;
-		}
+		// Skip if /device doesn't exist
+		if (lstat(path, &info) < 0) continue;
 
+		// Append path to list
 		qDebug() << QString::fromStdString(entry.path()) << " " << QString::number(info.st_dev);
 		output.append(QString::fromStdString(entry.path()));
 	}

@@ -11,19 +11,24 @@ MainWindow::MainWindow(QWidget *parent) : QWidget(parent)
 	this->setGeometry(100,100,1000,500); // Set window size to be 1000x500
 
 	qDebug() << "MainWindow";
-	Serial serial;
 
 	// Device select dropdown
 	dropdown = new QComboBox(this);
-	dropdown->setGeometry(10,50,200,30);
+	dropdown->setGeometry(10,10,200,30);
 
-	// Populate list with available ports
-	dropdown->addItems(serial.FindAllSerialPorts());
-	qDebug() << "list has " << dropdown->count() << " things";
+	// Populate dropdown with available ports
+	MainWindow::refreshPortList();
 
 	// Start button
-	start_button = new QPushButton("Add Item", this);
-	QObject::connect(start_button, &QPushButton::clicked, this, &MainWindow::addAnItem);
-	start_button->setGeometry(10, 10, 80, 30);
+	refreshBtn = new QPushButton("Refresh", this);
+	QObject::connect(refreshBtn, &QPushButton::clicked, this, &MainWindow::refreshPortList);
+	refreshBtn->setGeometry(220, 10, 80, 30);
 
+}
+
+void MainWindow::refreshPortList() {
+	// Populate dropdown with available ports
+	dropdown->clear();
+	dropdown->addItems(serial.FindAllSerialPorts());
+	qDebug() << "list has " << dropdown->count() << " things";
 }
