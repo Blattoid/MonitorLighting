@@ -18,3 +18,6 @@ HEADERS += \
 
 RESOURCES += \
 	Resources.qrc
+
+FORMS += \
+	src/mainwindow.ui

@@ -1,23 +1,22 @@
-#ifndef WINDOW_H
-#define WINDOW_H
+#ifndef MAINWINDOW_H
+#define MAINWINDOW_H
 
-#include "serial.h"
-#include <QWidget>
+#include <QMainWindow>
 
-class QComboBox;
-class QPushButton;
+namespace Ui {
+class MainWindow;
+}
 
-class MainWindow : public QWidget
+class MainWindow : public QMainWindow
 {
-	public:
-		explicit MainWindow(QWidget *parent = 0);
-	private:
-		Serial serial;
+	Q_OBJECT
 
-		QComboBox *dropdown;
-		QPushButton *refreshBtn;
+public:
+	explicit MainWindow(QWidget *parent = nullptr);
+	~MainWindow();
 
-		void refreshPortList();
+private:
+	Ui::MainWindow *ui;
 };
 
-#endif // WINDOW_H
+#endif // MAINWINDOW_H
